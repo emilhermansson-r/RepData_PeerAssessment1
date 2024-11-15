@@ -1,22 +1,22 @@
+---
 # Course project 1 Reproducable Research
 
 ## Loading and preprocessing the data
 ```{r echo = TRUE}
 #Setting WD
-setwd("H:/Mina dokument_filer/Kurser/R programming")
+setwd("/Users/emilhermansson/Desktop/RkursJH/Project")
 
 #Loading packages
-install.packages("ggplot2")
 library(ggplot2)
 
 #Downloading csv
 download.file('https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip', destfile = 'DATA.zip', method = "curl")
 
 #Unzip data
-unzip("DATA.zip", exdir = "H:/Mina dokument_filer/Kurser/R programming/Datacp1")
+unzip("DATA.zip", exdir = "/Users/emilhermansson/Desktop/RkursJH/Project/Datacp1")
 
 #Reading data
-data <- read.csv("H:/Mina dokument_filer/Kurser/R programming/Datacp1/activity.csv")
+data <- read.csv("/Users/emilhermansson/Desktop/RkursJH/Project/Datacp1/activity.csv")
 
 #Summarizing data
 summary(data)
@@ -62,7 +62,7 @@ print(paste0("The maximum number of steps is taken at the 5 minute interval at "
 nofmissing <- nrow(data[is.na(data$steps) == TRUE,])
 
 #filling missing values with avarage for the interval
-data$steps <- ifelse(is.na(data$steps), avarage_interval$steps,data$steps )
+data$steps <- ifelse(is.na(data$steps), average_interval$steps, data$steps)
 
 #calculate daily avarage
 day_aggr <- aggregate(steps ~ date, data = data, sum)
@@ -84,10 +84,7 @@ data$date <- date <- as.Date(data$date, format = "%Y-%m-%d")
 data$day <- weekdays(data$date)
 
 #Creating variable that tells if it is weekend or weekday
-data$daytype <- ifelse(data$day == "lördag" | data$day == "söndag", "Weekend", "Weekday" )
-
-#I got Rstudio in swedish and therefore weekdays are in swedish, lördag and söndag means
-#saturday and sunday in swedish.
+data$daytype <- ifelse(data$day == "Saturday" | data$day == "Sunday", "Weekend", "Weekday" )
 
 #Aggregating 
 steps_interval_daytype  <- aggregate(steps ~ interval + daytype, data = data, mean)
