@@ -1,6 +1,7 @@
 ## Course project 1 Reproducable Research
 
 #Loading and preprocessing the data
+
 ```{r echo = TRUE}
 #Setting WD
 setwd("H:/Mina dokument_filer/Kurser/R programming")
@@ -23,6 +24,7 @@ summary(data)
 ```      
 
 #Calculating the mean number of steps per day
+
 ```{r echo = TRUE}
 #aggregating data
 steps_day  <- aggregate(steps ~ date, data = data, sum)
@@ -40,6 +42,7 @@ print(paste("mean value of steps per day is",mean_steps, "while the median value
 ```      
 
 #What is the average daily activity pattern?
+
 ```{r echo = TRUE}
 average_interval <- aggregate(steps ~ interval, data = data, mean)
 
@@ -74,6 +77,7 @@ print("Since the missing value was filled with means per interval it does not af
 ```
 
 #Are there differences in activity patterns between weekdays and weekends?
+
 ```{r echo = TRUE}
 #Converting string to date format
 data$date <- date <- as.Date(data$date, format = "%Y-%m-%d")
