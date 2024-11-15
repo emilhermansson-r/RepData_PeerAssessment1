@@ -1,7 +1,6 @@
 ## Course project 1 Reproducable Research
 
-#Loading and preprocessing the data
-
+# Loading and preprocessing the data
 ```{r echo = TRUE}
 #Setting WD
 setwd("H:/Mina dokument_filer/Kurser/R programming")
@@ -23,8 +22,7 @@ data <- read.csv("H:/Mina dokument_filer/Kurser/R programming/Datacp1/activity.c
 summary(data)
 ```      
 
-#Calculating the mean number of steps per day
-
+# Calculating the mean number of steps per day
 ```{r echo = TRUE}
 #aggregating data
 steps_day  <- aggregate(steps ~ date, data = data, sum)
@@ -41,7 +39,7 @@ median_steps <- median(steps_day$steps)
 print(paste("mean value of steps per day is",mean_steps, "while the median value is", median_steps,"steps per day."))
 ```      
 
-#What is the average daily activity pattern?
+# What is the average daily activity pattern?
 
 ```{r echo = TRUE}
 average_interval <- aggregate(steps ~ interval, data = data, mean)
@@ -57,7 +55,7 @@ interval <- average_interval$interval[max_steps]
 print(paste0("The maximum number of steps is taken at the 5 minute interval at ", substring(interval,1,1),":",substring(interval,2,3)))
 ```    
 
-#Imputing missing values
+# Imputing missing values
 ```{r echo = TRUE}
 
 #calculating missing values
@@ -76,7 +74,7 @@ print("Since the missing value was filled with means per interval it does not af
 
 ```
 
-#Are there differences in activity patterns between weekdays and weekends?
+# Are there differences in activity patterns between weekdays and weekends?
 
 ```{r echo = TRUE}
 #Converting string to date format
